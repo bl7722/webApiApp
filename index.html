@@ -3,9 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Coding Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <script type="text/javascript" src="script.js"></script>
+    <div class= "container">
+        <div id="home">
+            <br><br>
+            <h1>Coding Quiz Challenge</h1>
+            <br><br>
+            <h2>Try to answer the following code related questions within the time limit. </h2>
+            <h2>Keep in mind that incorrect answers will penalize your score/time by ten seconds!</h2>
+            <button id="startBtn">Start Code Quiz</button>
+        </div>
+    </div>
+
+    <div class="card" style= "display:none" id = "name">
+        <form id = "usernameform">
+                Username:<br>
+                <input type="text" name="username" id = "usernamein">
+                <input type="submit" value="Submit" id="submit"><br>
+        </form> 
+    </div>
+
+    <main class="card" id = "quiz" style= "display:none">
+            
+        <!-- Time Remaining -->
+        <div class="card-header">Time Remaining:<span class = "time"></span></div>
+        <div class="card-body">
+           
+            <!-- Heading to display the question -->
+            <blockquote class="blockquote mb-0">
+                <p id = "question"></p>
+                 <!-- 4 buttons to display each answer choice -->
+                <footer class="card-footer"> 
+                    <!-- Answer choice A  -->
+                        <button type="button" class="btn btn-info btn-sm" id = "A"></button>
+                        <br>
+                    <!-- Answer choice B  -->
+                        <button type="button" class="btn btn-info btn-sm" id = "B"></button>
+                        <br>
+                    <!-- Answer choice C  -->
+                        <button type="button" class="btn btn-info btn-sm" id = "C"></button>
+                        <br>
+                    <!-- Answer choice D  -->
+                        <button type="button" class="btn btn-info btn-sm" id = "D"></button>
+                </footer>
+            </blockquote>
+        </div>
+    </main>
+    
+    <!-- Display of the high scores -->
+    <div class="card" style= "display:none" id = "score">
+        <div class="card-body">
+            <table style="width:100%">
+                
+                <tr>
+                  <th>Username</th>
+                  <th>Score</th>
+                </tr>
+                
+                <tr>
+                  <td id= "username"></td>
+                  <td id="points"></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+   
+    
+    
+    
+    
+    <script src="script.js"></script>
 </body>
 </html>
