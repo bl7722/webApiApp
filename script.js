@@ -145,16 +145,16 @@ startBtn.addEventListener("click", function(e){
             var total = 0
             for(var i = 0; i < correct.length; i++){
 
-                if(correct[i] === userAnswers[i]){
+                if(correct[i] == userAnswers[i]){
                     total++
                 };
             };
             
              var totalArray = []
              totalArray.push(total)
-        
-        
-        localStorage.setItem("Score", finalArray);
+             
+
+        localStorage.setItem("Score", totalArray);
         var usernameEnd = document.getElementById("username")
         var scoreEnd = document.getElementById("points")
         usernameEnd.textContent = localStorage.getItem("Name")
