@@ -4,15 +4,15 @@ var submit = document.getElementById("submit");
 var quiz = document.getElementById("quiz");
 var score = document.getElementById("score");
 var username= document.getElementById("name");
-var usernamein = document.getElementById("usernamein");
+var usernameIn = document.getElementById("usernameIn");
 var question = document.getElementById("question");
 var answerA = document.getElementById("A");
 var answerB = document.getElementById("B");
 var answerC = document.getElementById("C");
 var answerD = document.getElementById("D");
-var usernameform =document.getElementById("usernameform")
+var usernameForm =document.getElementById("usernameForm")
 var correct = ["red","blue","square","circle"];
-var useranswers = [] ;
+var userAnswers = [] ;
 
 var exam = [
   { q: "What color has the lowest wavelength frequency?",
@@ -20,7 +20,139 @@ var exam = [
           {a:"blue",
           b:"yellow",
           c:"red", 
-          d:"orange"} }];
+          d:"orange"} 
+  }];
+
+startBtn.addEventListener("click", function(e){
+
+        username.style.display = "none"
+        quiz.style.display = "block";
+        startBtn.style.display = "none";
+ 
+        var secondsLeft = 75;
+
+        function setTime() {
+        var timerInterval = setInterval(function() {
+            secondsLeft--;
+            timeEl.textContent = secondsLeft ;
+
+            if(secondsLeft === 0 || i==10) {
+            clearInterval(timerInterval);
+            input();
+            }
+        }, 1000)};
+     
+
+
+
+
+
+        for( i =0; i<11;){
+            question.textContent = exam[i].q;
+            answerA.textContent = exam[i].a.a;
+            answerB.textContent = exam[i].a.b;
+            answerC.textContent = exam[i].a.c;
+            answerD.textContent = exam[i].a.d;
+ 
+            answerA.addEventListener("click", function(e){
+                buttonPress = true
+                e.preventDefault();
+                userAnswers.push(answerA.textContent);
+
+                i++;
+                question.textContent = exam[i].q;
+                answerA.textContent = exam[i].a.a;
+                answerB.textContent = exam[i].a.b;
+                answerC.textContent = exam[i].a.c;
+                answerD.textContent = exam[i].a.d;
+            });
+
+            answerB.addEventListener("click", function(e){
+                buttonPress = true
+                e.preventDefault();
+                userAnswers.push(answerB.textContent);
+
+                i++;
+                question.textContent = exam[i].q;
+                answerA.textContent = exam[i].a.a;
+                answerB.textContent = exam[i].a.b;
+                answerC.textContent = exam[i].a.c;
+                answerD.textContent = exam[i].a.d;
+            });
+
+            answerC.addEventListener("click", function(e){
+                 buttonPress = true
+                e.preventDefault();
+                userAnswers.push(answerC.textContent);
+
+                i++;
+                question.textContent = exam[i].q;
+                answerA.textContent = exam[i].a.a;
+                answerB.textContent = exam[i].a.b;
+                answerC.textContent = exam[i].a.c;
+                answerD.textContent = exam[i].a.d;
+            });
+
+            answerD.addEventListener("click", function(e){
+                 buttonPress = true
+                epreventDefault();
+                userAnswers.push(answerD.textContent);
+ 
+                i++;
+                question.textContent = exam[i].q;
+                answerA.textContent = exam[i].a.a;
+                answerB.textContent = exam[i].a.b;
+                answerC.textContent = exam[i].a.c;
+                answerD.textContent = exam[i].a.d;
+            });
+            break;
+    }
+        setTime();
+    
+    });
+
+
+    function input(){
+
+        username.style.display = "block"
+        quiz.style.display = "none";
+ 
+        submit.addEventListener("click", function(e){
+         e.preventDefault();
+
+            var userArray = []
+            userArray.push(usernameIn.value)
+            localStorage.setItem("Name", userArray);
+            highscore();
+        });
+
+
+    };
+
+
+ 
+    function highscore(){
+
+            var final = 0
+            for(var j = 0; j<correct.length; j++){
+
+                if(correct[j] == userAnswers[j]){
+                    final++
+                };
+            };
+            
+             var finalArray = []
+             finalArray.push(final)
+             
+
+        localStorage.setItem("Score", finalArray);
+        var usernameOut = document.getElementById("username")
+        var scoreOut = document.getElementById("points")
+        usernameOut.textContent = localStorage.getItem("Name")
+        scoreOut.textContent = localStorage.getItem("Score")
+        username.style.display = "none";
+        score.style.display = "block";
+    };
 
 
 
@@ -28,16 +160,3 @@ var exam = [
 
 
 
-
-
-/*var startBtn = document.getElementById ("startbtn");
-var timeEl = document.querySelector(".time");
-
-var listOfQuestions= 
-startBtn.addEventListener("click", newQuestion)
-
-function newQuestion(){
-  return 3;
-
-  
-}*/
