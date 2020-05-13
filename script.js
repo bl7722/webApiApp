@@ -1,7 +1,7 @@
 var timeEl = document.querySelector(".time");
 var startBtn = document.getElementById("startBtn");
-var submit = document.getElementById("submit");
 var quiz = document.getElementById("quiz");
+var submit = document.getElementById("submit");
 var score = document.getElementById("score");
 var username= document.getElementById("name");
 var usernameIn = document.getElementById("usernameIn");
@@ -42,21 +42,21 @@ startBtn.addEventListener("click", function(e){
         quiz.style.display = "block";
         startBtn.style.display = "none";
  
-        var secondsLeft = 15;
+        var secondsLeft = 15;//change to 75
 
         function setTime() {
         var timerInterval = setInterval(function() {
             secondsLeft--;
             timeEl.textContent = secondsLeft ;
 
-            if(secondsLeft === 0 || i==10) {
+            if(secondsLeft === 0 || i === 3) {
             clearInterval(timerInterval);
             input();
             }
         }, 1000)};
 
         
-        for( i =0; i<3;){
+        for( i = 0; i < 3;){
             question.textContent = exam[i].q;
             answerA.textContent = exam[i].a.a;
             answerB.textContent = exam[i].a.b;
@@ -145,20 +145,20 @@ startBtn.addEventListener("click", function(e){
             var total = 0
             for(var i = 0; i < correct.length; i++){
 
-                if(correct[i] == userAnswers[i]){
+                if(correct[i] === userAnswers[i]){
                     total++
                 };
             };
             
              var totalArray = []
              totalArray.push(total)
-             
-
-        localStorage.setItem("Score", totalArray);
-        var usernameOut = document.getElementById("username")
-        var scoreOut = document.getElementById("points")
-        usernameOut.textContent = localStorage.getItem("Name")
-        scoreOut.textContent = localStorage.getItem("Score")
+        
+        
+        localStorage.setItem("Score", finalArray);
+        var usernameEnd = document.getElementById("username")
+        var scoreEnd = document.getElementById("points")
+        usernameEnd.textContent = localStorage.getItem("Name")
+        scoreEnd.textContent = localStorage.getItem("Score")
         username.style.display = "none";
         score.style.display = "block";
     };
