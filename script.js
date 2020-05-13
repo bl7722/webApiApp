@@ -11,8 +11,8 @@ var answerB = document.getElementById("B");
 var answerC = document.getElementById("C");
 var answerD = document.getElementById("D");
 var usernameForm =document.getElementById("usernameForm")
-var correct = ["red","blue","square","circle"];
-var userAnswers = [] ;
+var correct = ["red","square","Mercury"];
+var userAnswers = [];
 
 var exam = [
   { q: "What color has the lowest wavelength frequency?",
@@ -20,8 +20,21 @@ var exam = [
           {a:"blue",
           b:"yellow",
           c:"red", 
-          d:"orange"} 
-  }];
+          d:"orange"}},
+          
+  { q: "Which shape has a property of four 90 degree angles?",
+      a: 
+          {a:"square",
+          b:"pentagon",
+          c:"circle", 
+          d:"octogon"}},
+
+  { q: "What is the first planet from the sun?",
+      a: 
+          {a:"Jupiter",
+          b:"Earth",
+          c:"Mars", 
+          d:"Mercury"},}];
 
 startBtn.addEventListener("click", function(e){
 
@@ -29,7 +42,7 @@ startBtn.addEventListener("click", function(e){
         quiz.style.display = "block";
         startBtn.style.display = "none";
  
-        var secondsLeft = 75;
+        var secondsLeft = 15;
 
         function setTime() {
         var timerInterval = setInterval(function() {
@@ -41,13 +54,9 @@ startBtn.addEventListener("click", function(e){
             input();
             }
         }, 1000)};
-     
 
-
-
-
-
-        for( i =0; i<11;){
+        
+        for( i =0; i<3;){
             question.textContent = exam[i].q;
             answerA.textContent = exam[i].a.a;
             answerB.textContent = exam[i].a.b;
@@ -95,7 +104,7 @@ startBtn.addEventListener("click", function(e){
 
             answerD.addEventListener("click", function(e){
                  buttonPress = true
-                epreventDefault();
+                e.preventDefault();
                 userAnswers.push(answerD.textContent);
  
                 i++;
@@ -110,7 +119,6 @@ startBtn.addEventListener("click", function(e){
         setTime();
     
     });
-
 
     function input(){
 
@@ -128,24 +136,25 @@ startBtn.addEventListener("click", function(e){
 
 
     };
+    
 
 
  
     function highscore(){
 
-            var final = 0
-            for(var j = 0; j<correct.length; j++){
+            var total = 0
+            for(var i = 0; i < correct.length; i++){
 
-                if(correct[j] == userAnswers[j]){
-                    final++
+                if(correct[i] == userAnswers[i]){
+                    total++
                 };
             };
             
-             var finalArray = []
-             finalArray.push(final)
+             var totalArray = []
+             totalArray.push(total)
              
 
-        localStorage.setItem("Score", finalArray);
+        localStorage.setItem("Score", totalArray);
         var usernameOut = document.getElementById("username")
         var scoreOut = document.getElementById("points")
         usernameOut.textContent = localStorage.getItem("Name")
@@ -153,6 +162,10 @@ startBtn.addEventListener("click", function(e){
         username.style.display = "none";
         score.style.display = "block";
     };
+
+
+
+
 
 
 
